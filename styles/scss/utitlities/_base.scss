@@ -1,0 +1,102 @@
+@use "colors";
+@use "fonts";
+@use "variables";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    @include font-poppins;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $very-light-gray
+}
+.page {
+    &__title {
+        font-weight: 200;
+        opacity: 0.7;
+        text-align: center;
+        font-size: $font-size-lg;
+        line-height: $line-height-md;
+    }
+    &__word {
+        display: block;
+        text-align: center;
+        margin-top: 8px;
+        font-weight: $font-weight-lg;
+        line-height: $line-height-md;
+    }
+    &__desc {
+        min-width: 500px;
+        max-width: 500px;
+        text-align: center;
+        margin: 24px auto 48px auto;
+        font-size: $font-size-md;
+        opacity: 0.4;
+    }
+}
+.projects {
+    display: grid;
+    grid-template-areas: 
+    ". team-builder ."
+    "supervisor team-builder calculator"
+    "supervisor karma calculator"
+    ". karma .";
+    gap: 24px;
+}
+.project {
+    &__calculator {
+    grid-area: calculator;
+    @include project-style($blue, calculator);
+    }
+    &__karma {
+        grid-area: karma;
+        @include project-style($orange, karma);
+    }
+    &__team-builder {
+        grid-area: team-builder;
+        @include project-style($red, team-builder);
+    }
+    &__supervisor {
+        grid-area: supervisor;
+        @include project-style($cyan, supervisor);
+    }
+    &__title {
+        opacity: 0.7;
+        margin: 24px 0 16px 24px;
+    }
+    &__desc {
+        opacity: 0.3;
+        font-weight: $font-weight-md;
+        width: 80%;
+        margin-left: 24px;
+    }
+}
+@media (max-width: 1250px) {
+    .projects {
+        grid-template-areas: 
+        "supervisor"
+        "supervisor"
+        "team-builder"
+        "team-builder"
+        "karma"
+        "karma"
+        "calculator"
+        "calculator";
+    }
+    .page {
+        &__desc {
+            margin-bottom: 72px;
+            min-width: 320px;
+            max-width: 320px;
+        } 
+    }
+}
